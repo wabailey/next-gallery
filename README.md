@@ -7,4 +7,5 @@
 - [x] Create basic ui with mock data
 - [x] Set up postgres database connection on Vercel
 - [x] Link database in project
-- [] Create database ui
+- [x] Attach database and ui
+- [ ]
