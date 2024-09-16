@@ -8,5 +8,5 @@
 - [x] Set up postgres database connection on Vercel
 - [x] Link database in project
 - [x] Attach database and ui
-- [x] Added and set up clerk for auth via google or github
-- [ ]
+- [x] Add and set up clerk for auth via google / github
+- [x] Uploadthing file storage and configuration
