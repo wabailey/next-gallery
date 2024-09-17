@@ -9,4 +9,6 @@
 - [x] Link database in project
 - [x] Attach database and ui
 - [x] Add and set up clerk for auth via google / github
-- [x] Uploadthing file storage and configuration
+- [x] Image uploads via uploadthing file storage and configure with db
+- [x] Only show uploads that match signed in user id
+- [x] Separate queries into server-only file
