@@ -8,6 +8,7 @@ import { type Metadata } from "next";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { GeistSans } from "geist/font/sans";
 
 export const metadata: Metadata = {
   title: "Next Gallery",
@@ -24,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" className={`${GeistSans.variable}`}>
         <NextSSRPlugin
           /**
            * The `extractRouterConfig` will extract **only** the route configs
@@ -34,9 +35,11 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className="flex flex-col gap-4 font-sans">
-          <TopNav />
-          {children}
+        <body>
+          <div>
+            <TopNav />
+            <main>{children}</main>
+          </div>
           {modal}
           <div id="modal-root" />
         </body>

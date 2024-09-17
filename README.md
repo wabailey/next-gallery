@@ -13,3 +13,5 @@
 - [x] Only show uploads that match signed in user id
 - [x] Separate queries into server-only file
 - [x] Set up sentry for error handling
+- [x] Create parallel routing and pages for images
+- [x] Create image modal component and styles
