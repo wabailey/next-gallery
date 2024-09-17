@@ -12,3 +12,4 @@
 - [x] Image uploads via uploadthing file storage and configure with db
 - [x] Only show uploads that match signed in user id
 - [x] Separate queries into server-only file
+- [x] Set up sentry for error handling
