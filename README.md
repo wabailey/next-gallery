@@ -15,3 +15,4 @@
 - [x] Set up sentry for error handling
 - [x] Create parallel routing and pages for images
 - [x] Create image modal component and styles
+- [x] Add shadcn for toast ui on file uploads
