@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
 import { toast } from "sonner";
+import { usePostHog } from "posthog-js/react";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -23,6 +24,7 @@ const useUploadThingInputProps = (...args: Input) => {
   return {
     inputProps: {
       onChange,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       multiple: ($ut.permittedFileInfo?.config?.image?.maxFileCount ?? 1) > 1,
       accept: "image/*",
     },
@@ -49,6 +51,25 @@ function UploadIcon() {
   );
 }
 
+function TickIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="size-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+    </svg>
+  );
+}
+
 function LoadingSpinner() {
   return (
     <svg
@@ -69,22 +90,27 @@ function LoadingSpinner() {
   );
 }
 
-export function UploadButton() {
+export function SimpleUploadButton() {
   const router = useRouter();
+
+  const posthog = usePostHog();
+
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
-      toast("Uploading...", {
-        duration: 10000,
+      posthog?.capture("upload_begin");
+      toast(<div>Uploading...</div>, {
+        duration: 5000,
         id: "upload-begin",
         className: "gap-3",
         icon: <LoadingSpinner />,
       });
     },
     onClientUploadComplete() {
+      posthog?.capture("upload_complete");
       toast.dismiss("upload-begin");
-      toast("Upload Complete!", {
+      toast(<div>Upload Complete!</div>, {
         className: "gap-3",
-        icon: <LoadingSpinner />,
+        icon: <TickIcon />,
       });
       router.refresh();
     },
