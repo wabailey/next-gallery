@@ -16,3 +16,5 @@
 - [x] Create parallel routing and pages for images
 - [x] Create image modal component and styles
 - [x] Add shadcn for toast ui on file uploads
+- [x] Create delete button
+- [x] Add posthog for analytics and link up delete btn
