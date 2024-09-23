@@ -99,11 +99,16 @@ export function SimpleUploadButton() {
     onUploadBegin() {
       posthog?.capture("upload_begin");
       toast(<div>Uploading...</div>, {
-        duration: 5000,
+        duration: 10000,
         id: "upload-begin",
         className: "gap-3",
         icon: <LoadingSpinner />,
       });
+    },
+    onUploadError(error) {
+      posthog?.capture("upload_error", { error });
+      toast.dismiss("upload-begin");
+      toast.error("Upload Failed");
     },
     onClientUploadComplete() {
       posthog?.capture("upload_complete");
